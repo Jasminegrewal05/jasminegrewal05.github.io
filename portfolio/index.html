@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jasmine Kaur — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,700;12..96,75..100,800&family=Instrument+Sans:wght@400;500;600&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FCF8E6;
+  --paper:#FFFFFF;
+  --pink:#FF3D8F;
+  --pink-mid:#FFB3D4;
+  --pink-soft:#FFDCEC;
+  --pink-ghost:#FFEDF5;
+  --ink:#171018;
+  --ink-soft:#5B4F58;
+  --lilac:#DCD0FF;
+  --yellow:#FFE45C;
+  --mint:#8FE7A8;
+  --display:"Bricolage Grotesque","Arial Black",Impact,sans-serif;
+  --body:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --hand:"Caveat","Comic Sans MS",cursive;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background-color:var(--cream);
+  background-image:linear-gradient(rgba(255,61,143,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,61,143,.07) 1px,transparent 1px);
+  background-size:28px 28px;
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+::selection{background:var(--pink);color:#fff}
+a{color:inherit}
+img{max-width:100%}
+
+.wrap{width:min(1140px,92vw);margin:0 auto}
+
+.progress{position:fixed;top:0;left:0;height:5px;width:0;background:var(--pink);z-index:60}
+
+/* ---------- lens toggle behaviour ---------- */
+.b{display:none}
+body[data-lens="biz"] .t{display:none}
+body[data-lens="biz"] .b{display:inline}
+body[data-lens="biz"] li.b{display:list-item}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(252,248,230,.82);backdrop-filter:blur(8px);border-bottom:2px solid var(--ink)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0}
+.mark{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.02em}
+.mark span{color:var(--pink)}
+.navlinks{display:flex;gap:20px;font-size:14px;font-weight:500}
+.navlinks a{text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent}
+.navlinks a:hover,.navlinks a:focus-visible{border-bottom-color:var(--pink);color:var(--pink)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:70px 0 40px;overflow:hidden}
+.ghost{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--display);font-weight:800;font-size:clamp(90px,20vw,260px);line-height:.78;letter-spacing:-.045em;white-space:nowrap;pointer-events:none;user-select:none}
+.ghost.one{top:8px;color:var(--pink-soft)}
+.ghost.two{top:clamp(70px,15.5vw,200px);color:var(--pink-ghost)}
+
+.herogrid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-top:clamp(40px,9vw,110px)}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:var(--cream);padding:6px 12px;border-radius:100px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mint);display:inline-block}
+
+h1{font-family:var(--display);font-weight:800;font-size:clamp(46px,7.4vw,92px);line-height:.92;letter-spacing:-.035em;margin:18px 0 0}
+h1 em{font-style:normal;color:var(--pink)}
+.lede{font-size:clamp(17px,2vw,21px);max-width:34ch;margin:20px 0 0;color:var(--ink-soft)}
+.lede strong{color:var(--ink);font-weight:600}
+
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-block;font-weight:600;font-size:15px;text-decoration:none;padding:13px 22px;border:2.5px solid var(--ink);border-radius:100px;background:var(--paper);box-shadow:4px 4px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
+.btn:hover,.btn:focus-visible{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.solid{background:var(--pink);color:#fff}
+
+/* toy computer scene */
+.stage{position:relative;display:flex;justify-content:center}
+.scene{position:relative;width:min(470px,100%)}
+.scene svg{display:block;width:100%;height:auto;overflow:visible}
+@keyframes sway{0%,100%{transform:rotate(-3.5deg)}50%{transform:rotate(3.5deg)}}
+.spider{transform-origin:472px 4px;animation:sway 4.5s ease-in-out infinite}
+@keyframes flick{0%,93%,100%{opacity:1}96%{opacity:.5}}
+.crt{animation:flick 7s ease-in-out infinite}
+@keyframes tailwag{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-10deg)}}
+.tail{transform-origin:452px 430px;animation:tailwag 3.4s ease-in-out infinite}
+.note{position:absolute;font-family:var(--hand);font-size:19px;line-height:1.15;padding:14px 16px;border:2px solid var(--ink);box-shadow:3px 4px 0 rgba(23,16,24,.75)}
+.note.n1{background:var(--yellow);top:2%;right:-4%;transform:rotate(7deg);max-width:145px;z-index:3}
+.note.n2{background:var(--lilac);bottom:4%;left:-6%;transform:rotate(-6deg);max-width:165px;z-index:3}
+
+/* ---------- marquee ---------- */
+.marquee{border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);background:var(--pink);color:#fff;overflow:hidden;margin-top:56px}
+.track{display:flex;gap:34px;width:max-content;padding:12px 0;animation:slide 28s linear infinite;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.01em;text-transform:uppercase}
+.track span{display:flex;align-items:center;gap:34px;white-space:nowrap}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- generic section ---------- */
+.section{padding:90px 0}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,58px);letter-spacing:-.035em;line-height:1;margin:0}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);margin:0 0 10px}
+.headnote{font-family:var(--hand);font-size:21px;color:var(--ink-soft);max-width:32ch}
+
+/* ---------- lens switch ---------- */
+.lens{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border:2.5px solid var(--ink);border-radius:100px;padding:5px;box-shadow:4px 4px 0 var(--ink)}
+.lens button{font-family:var(--body);font-size:14px;font-weight:600;border:0;background:transparent;color:var(--ink);padding:9px 18px;border-radius:100px;cursor:pointer}
+.lens button[aria-pressed="true"]{background:var(--pink);color:#fff}
+.lens button:focus-visible{outline:3px solid var(--lilac);outline-offset:2px}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:start}
+.about p{font-size:19px;margin:0 0 18px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat{background:var(--paper);border:2.5px solid var(--ink);border-radius:14px;padding:18px;box-shadow:5px 5px 0 var(--ink)}
+.stat b{display:block;font-family:var(--display);font-weight:800;font-size:34px;letter-spacing:-.03em;line-height:1;color:var(--pink)}
+.stat span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.polaroid{background:var(--paper);border:2.5px solid var(--ink);padding:12px 12px 44px;box-shadow:6px 7px 0 var(--ink);transform:rotate(2.5deg);position:relative}
+.polaroid .fill{aspect-ratio:4/3;background:linear-gradient(150deg,var(--pink) 0%,var(--pink-mid) 55%,var(--lilac) 100%);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:52px;color:#fff}
+.polaroid .cap{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:var(--hand);font-size:20px}
+.tape{position:absolute;top:-14px;left:50%;transform:translateX(-50%) rotate(-3deg);width:96px;height:26px;background:rgba(255,228,92,.75);border:1px dashed rgba(23,16,24,.35)}
+
+/* ---------- work ---------- */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.card{position:relative;background:var(--paper);border:3px solid var(--ink);border-radius:18px;padding:26px 24px 24px;box-shadow:7px 8px 0 var(--ink);transition:transform .18s ease,box-shadow .18s ease}
+.card:nth-child(odd){transform:rotate(-.7deg)}
+.card:nth-child(even){transform:rotate(.6deg)}
+.card:hover{transform:rotate(0deg) translateY(-4px);box-shadow:10px 12px 0 var(--pink)}
+.card h3{font-family:var(--display);font-weight:800;font-size:25px;letter-spacing:-.025em;line-height:1.1;margin:12px 0 6px}
+.when{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.card p{margin:0 0 14px;font-size:15.5px;color:var(--ink-soft)}
+.card ul{margin:0 0 16px;padding-left:18px;font-size:15.5px}
+.card li{margin-bottom:7px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.chip{font-family:var(--mono);font-size:11px;background:var(--pink-ghost);border:2px solid var(--ink);border-radius:100px;padding:4px 10px}
+.links{display:flex;gap:14px;font-size:14px;font-weight:600}
+.links a{text-decoration:none;border-bottom:2px solid var(--pink)}
+.links a:hover{color:var(--pink)}
+.pin{position:absolute;top:-11px;right:24px;width:22px;height:22px;border-radius:50%;background:var(--pink);border:3px solid var(--ink)}
+
+/* ---------- receipt ---------- */
+.receiptwrap{display:flex;justify-content:center}
+.receipt{width:min(620px,100%);background:var(--paper);border:2px solid var(--ink);padding:34px 30px 40px;font-family:var(--mono);font-size:13.5px;box-shadow:8px 9px 0 rgba(23,16,24,.85);position:relative}
+.receipt::after{content:"";position:absolute;left:0;right:0;bottom:-13px;height:14px;background:repeating-linear-gradient(135deg,var(--paper) 0 10px,transparent 10px 20px);border-bottom:2px solid transparent}
+.receipt h3{font-family:var(--display);font-size:26px;text-align:center;margin:0 0 4px;letter-spacing:-.02em}
+.receipt .sub{text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:22px}
+.rule{border-top:2px dashed rgba(23,16,24,.35);margin:18px 0}
+.row{display:flex;justify-content:space-between;gap:16px;margin-bottom:4px}
+.row b{font-weight:700}
+.row .yr{white-space:nowrap;color:var(--ink-soft)}
+.rdesc{color:var(--ink-soft);font-size:12.5px;margin:0 0 16px;line-height:1.55}
+.total{display:flex;justify-content:space-between;font-weight:700;font-size:15px;margin-top:6px}
+
+/* ---------- skills ---------- */
+.stickers{display:flex;flex-wrap:wrap;gap:11px}
+.sticker{font-weight:600;font-size:15px;background:var(--paper);border:2.5px solid var(--ink);border-radius:100px;padding:9px 17px;box-shadow:3px 4px 0 var(--ink);transition:transform .15s ease}
+.sticker:nth-child(3n){background:var(--pink-soft)}
+.sticker:nth-child(5n){background:var(--lilac)}
+.sticker:nth-child(7n){background:var(--yellow)}
+.sticker:hover{transform:rotate(-3deg) scale(1.05)}
+
+/* ---------- contact ---------- */
+.contact{background:var(--pink);border-top:3px solid var(--ink);color:#fff;padding:86px 0 40px;margin-top:40px}
+.contact h2{color:#fff;font-size:clamp(38px,8vw,86px)}
+.contact .kicker{color:#fff}
+.mails{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.mails a{background:var(--cream);color:var(--ink);text-decoration:none;font-weight:600;border:3px solid var(--ink);border-radius:100px;padding:14px 24px;box-shadow:5px 5px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
+.mails a:hover,.mails a:focus-visible{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:64px;padding-top:18px;border-top:2px solid rgba(255,255,255,.5);font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+
+/* ---------- reveal ---------- */
+.rise{opacity:0;transform:translateY(26px)}
+.rise.in{opacity:1;transform:none;transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)}
+
+@media (max-width:900px){
+  .herogrid,.about{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .navlinks{display:none}
+  .stage{margin-top:24px}
+  .section{padding:64px 0}
+  .note.n2{left:0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .track,.spider,.crt,.tail{animation:none}
+  .rise{opacity:1;transform:none}
+  .card:hover{transform:none}
+}
+</style>
+</head>
+<body data-lens="tech">
+
+<div class="progress" id="bar"></div>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="mark">Jasmine Kaur<span>.</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#track">Track record</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="lens" role="group" aria-label="Choose how to read this page">
+      <button id="btech" aria-pressed="true">Engineer</button>
+      <button id="bbiz" aria-pressed="false">Analyst</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="ghost one" aria-hidden="true">Portfolio</div>
+  <div class="ghost two" aria-hidden="true">Portfolio</div>
+  <div class="wrap herogrid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> Open to internships · Patiala, India</span>
+      <h1>I turn messy data into <em>decisions</em> people can defend.</h1>
+      <p class="lede">
+        <span class="t">Computer Science &amp; Business Systems at Thapar. I build <strong>risk-aware machine learning</strong> — credit default models, clinical screening pipelines, and the explainability layer that makes them trustworthy.</span>
+        <span class="b">Computer Science &amp; Business Systems at Thapar. I sit between <strong>the model and the business</strong> — turning risk analytics into credit policy, revenue models, and recommendations a stakeholder will actually sign off on.</span>
+      </p>
+      <div class="cta">
+        <a class="btn solid" href="#work">See the work</a>
+        <a class="btn" href="mailto:jasminekaur3k@gmail.com">Email me</a>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="scene">
+        <div class="note n1">CTRL + Z is my superpower</div>
+        <svg viewBox="0 0 520 600" role="img" aria-label="Illustration of a pink toy computer printing out a resume, with a sleeping cat and a hanging spider">
+          <defs>
+            <linearGradient id="pinkBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FF6BAA"/>
+              <stop offset="100%" stop-color="#F71F7D"/>
+            </linearGradient>
+            <linearGradient id="pinkBase" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#FF87BC"/>
+              <stop offset="100%" stop-color="#F5238020"/>
+            </linearGradient>
+            <pattern id="dots" width="7" height="7" patternUnits="userSpaceOnUse">
+              <circle cx="1.6" cy="1.6" r="1.1" fill="rgba(255,255,255,.16)"/>
+            </pattern>
+            <linearGradient id="deskShade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FFFFFF"/>
+              <stop offset="100%" stop-color="#F1EAD6"/>
+            </linearGradient>
+          </defs>
+
+          <g stroke="#171018" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round">
+
+            <rect x="8" y="424" width="504" height="54" rx="10" fill="url(#deskShade)"/>
+            <path d="M8 442 H512" stroke="rgba(255,61,143,.25)" stroke-width="2"/>
+            <path d="M8 460 H512" stroke="rgba(255,61,143,.25)" stroke-width="2"/>
+
+            <path d="M112 438 C 150 430, 178 418, 196 418" fill="none" stroke-width="3"/>
+            <ellipse cx="82" cy="440" rx="34" ry="21" fill="#FF87BC"/>
+            <path d="M82 419 V 440" stroke-width="2.6"/>
+
+            <g fill="#FFB3D4">
+              <path d="M196 128 C 176 92, 214 78, 226 112 Z"/>
+              <path d="M262 112 C 274 78, 312 92, 292 128 Z"/>
+              <rect x="228" y="102" width="32" height="24" rx="8"/>
+            </g>
+
+            <rect x="86" y="122" width="348" height="256" rx="38" fill="url(#pinkBody)"/>
+            <rect x="100" y="136" width="230" height="14" rx="7" fill="rgba(255,255,255,.35)" stroke="none"/>
+
+            <g class="crt">
+              <rect x="112" y="150" width="252" height="188" rx="20" fill="#1C1420"/>
+              <rect x="112" y="150" width="252" height="188" rx="20" fill="url(#dots)" stroke="none"/>
+              <text x="238" y="264" text-anchor="middle" fill="#FFFFFF" stroke="none"
+                    style="font-family:var(--display);font-weight:800;font-size:52px;letter-spacing:-.03em">Portfolio</text>
+              <text x="238" y="294" text-anchor="middle" fill="#FFB3D4" stroke="none"
+                    style="font-family:var(--mono);font-size:13px;letter-spacing:.22em">JASMINE KAUR</text>
+            </g>
+
+            <circle cx="398" cy="246" r="30" fill="#EFE9E2"/>
+            <circle cx="398" cy="246" r="16" fill="#F7237E"/>
+            <circle cx="398" cy="246" r="5" fill="#FFD9E9" stroke="none"/>
+
+            <g transform="translate(64 186)">
+              <path d="M28 0 L36 12 L50 8 L48 23 L62 28 L50 37 L58 50 L43 49 L40 64 L28 55 L16 64 L13 49 L-2 50 L6 37 L-6 28 L8 23 L6 8 L20 12 Z" fill="#DCD0FF"/>
+              <text x="28" y="36" text-anchor="middle" fill="#171018" stroke="none"
+                    style="font-family:var(--mono);font-weight:700;font-size:17px">&lt;/&gt;</text>
+            </g>
+
+            <rect x="222" y="374" width="76" height="34" fill="#F7237E"/>
+            <rect x="152" y="398" width="216" height="38" rx="14" fill="url(#pinkBody)"/>
+            <rect x="186" y="410" width="150" height="9" rx="4" fill="#1C1420"/>
+            <g transform="translate(330 402)">
+              <rect x="0" y="0" width="86" height="26" rx="7" fill="#8FE7A8"/>
+              <text x="43" y="18" text-anchor="middle" fill="#171018" stroke="none"
+                    style="font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.06em">SCROLL ▸</text>
+            </g>
+
+            <g transform="translate(176 414) rotate(7)">
+              <rect x="0" y="0" width="158" height="164" rx="5" fill="#FFFFFF"/>
+              <rect x="12" y="14" width="36" height="42" rx="3" fill="#FFB3D4" stroke-width="2.4"/>
+              <g stroke="none">
+                <rect x="56" y="16" width="78" height="9" rx="4" fill="#2A2230"/>
+                <rect x="56" y="31" width="56" height="6" rx="3" fill="#B9B2BC"/>
+                <rect x="56" y="43" width="66" height="6" rx="3" fill="#B9B2BC"/>
+                <rect x="12" y="70" width="42" height="7" rx="3" fill="#F7237E"/>
+                <rect x="12" y="84" width="132" height="5" rx="2.5" fill="#CFC9D2"/>
+                <rect x="12" y="94" width="112" height="5" rx="2.5" fill="#CFC9D2"/>
+                <rect x="12" y="110" width="52" height="7" rx="3" fill="#F7237E"/>
+                <rect x="12" y="124" width="126" height="5" rx="2.5" fill="#CFC9D2"/>
+                <rect x="12" y="134" width="98" height="5" rx="2.5" fill="#CFC9D2"/>
+                <rect x="12" y="148" width="30" height="10" rx="5" fill="#FFE45C"/>
+                <rect x="47" y="148" width="34" height="10" rx="5" fill="#DCD0FF"/>
+                <rect x="86" y="148" width="28" height="10" rx="5" fill="#8FE7A8"/>
+              </g>
+            </g>
+
+            <g>
+              <path class="tail" d="M452 430 C 486 434, 496 414, 486 400" fill="none" stroke-width="3.4"/>
+              <path d="M378 428 C 380 398, 402 386, 428 388 C 458 390, 476 406, 476 428 Z" fill="#C3C8CE"/>
+              <circle cx="396" cy="400" r="21" fill="#CFD4DA"/>
+              <path d="M380 388 L378 372 L394 382 Z" fill="#CFD4DA"/>
+              <path d="M412 382 L416 368 L400 378 Z" fill="#CFD4DA"/>
+              <g stroke-width="2.6" fill="none">
+                <path d="M388 400 q5 5 10 0"/>
+                <path d="M404 400 q5 5 10 0"/>
+                <path d="M432 396 q6 8 12 0"/>
+                <path d="M446 404 q6 8 12 0"/>
+              </g>
+            </g>
+
+            <g class="spider">
+              <path d="M472 -60 V 62" fill="none" stroke-width="2.2"/>
+              <g stroke-width="2.8" fill="none">
+                <path d="M456 78 C 440 70, 432 78, 428 90"/>
+                <path d="M456 88 C 438 88, 430 98, 430 108"/>
+                <path d="M488 78 C 504 70, 512 78, 516 90"/>
+                <path d="M488 88 C 506 88, 514 98, 514 108"/>
+              </g>
+              <circle cx="472" cy="84" r="22" fill="#2A2230"/>
+              <circle cx="464" cy="80" r="8" fill="#FFFFFF" stroke-width="2.4"/>
+              <circle cx="481" cy="80" r="8" fill="#FFFFFF" stroke-width="2.4"/>
+              <circle cx="465" cy="81" r="3.2" fill="#171018" stroke="none"/>
+              <circle cx="482" cy="81" r="3.2" fill="#171018" stroke="none"/>
+            </g>
+
+          </g>
+        </svg>
+        <div class="note n2">Half engineer,<br>half analyst.<br>Try the switch ↗</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Credit risk ✦ Machine learning ✦ Design thinking ✦ Streamlit ✦ SHAP ✦ Business modelling ✦</span>
+    <span>Credit risk ✦ Machine learning ✦ Design thinking ✦ Streamlit ✦ SHAP ✦ Business modelling ✦</span>
+  </div>
+</div>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="head rise">
+      <div>
+        <p class="kicker">Who's typing</p>
+        <h2>Two degrees in one.</h2>
+      </div>
+      <p class="headnote">The switch up top rewrites this page for whoever is reading it.</p>
+    </div>
+    <div class="about">
+      <div class="rise">
+        <p>
+          <span class="t">I'm a third-year CSBS student who got hooked on the part of machine learning nobody puts on a poster: what happens when the model is wrong. Most of my work sits in high-stakes prediction — credit default, disease screening — where a false negative costs a person something real.</span>
+          <span class="b">I'm a third-year CSBS student who likes the question underneath the model: what should the business actually do with this number? Most of my work ends in a recommendation — a credit limit, a revenue stream, a policy guardrail — not a leaderboard score.</span>
+        </p>
+        <p>
+          <span class="t">So I optimise for recall before accuracy, run reject inference before trusting a portfolio, and put SHAP on top so a decision can be explained line by line. I write Python, C++, R and SQL, and ship things in Streamlit so people can poke at them.</span>
+          <span class="b">So I spend as much time on segmentation frameworks, cost structures and stakeholder interviews as on the code. I've sat with 30+ street vendors to find a pain point, and built a six-stream revenue model for an urban-greening venture the same semester.</span>
+        </p>
+        <p>
+          <span class="t">Outside the terminal I run design for our Microsoft Learn Student Chapter — which is why my notebooks and my posters both get the same fussing over.</span>
+          <span class="b">Outside spreadsheets I run design for our Microsoft Learn Student Chapter and chased sponsorships for a 3-day university fest — which is where the stakeholder communication actually got tested.</span>
+        </p>
+        <div class="stats" style="margin-top:26px">
+          <div class="stat"><b>8.71</b><span>CGPA / 10</span></div>
+          <div class="stat"><b>15</b><span>Branch rank</span></div>
+          <div class="stat"><b>30,000</b><span>Accounts modelled</span></div>
+          <div class="stat"><b>250k+</b><span>Records processed</span></div>
+        </div>
+      </div>
+      <div class="rise">
+        <div class="polaroid">
+          <div class="tape"></div>
+          <div class="fill">JK</div>
+          <div class="cap">Thapar, Patiala · 2024–28</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="head rise">
+      <div>
+        <p class="kicker">Pinned to the board</p>
+        <h2>Selected work.</h2>
+      </div>
+      <p class="headnote">Five things I built, and what each one was actually for.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card rise">
+        <div class="pin"></div>
+        <p class="when">May 2026 · Solo build</p>
+        <h3>Credit Risk &amp; Portfolio Optimization Engine</h3>
+        <p>
+          <span class="t">An end-to-end probability-of-default system on 30,000 credit card accounts.</span>
+          <span class="b">A credit decisioning tool that turns 30,000 account histories into limit recommendations.</span>
+        </p>
+        <ul>
+          <li class="t">XGBoost PD model at 0.82 ROC-AUC, with reject inference so the model learns from rejected applicants too.</li>
+          <li class="t">Engineered behavioural, delinquency and utilisation features; statistical feature selection to cut noise.</li>
+          <li class="t">SHAP explainability on every prediction, so a limit change can be justified per account.</li>
+          <li class="b">Segments accounts into three behavioural risk bands and recommends credit limits inside policy guardrails.</li>
+          <li class="b">Built for portfolio operations: every recommendation comes with the reason behind it, not just a score.</li>
+          <li class="b">Shipped as a Streamlit app so a non-technical reviewer can run scenarios themselves.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip t">XGBoost</span><span class="chip t">SHAP</span><span class="chip t">Reject inference</span><span class="chip t">Streamlit</span>
+          <span class="chip b">Risk segmentation</span><span class="chip b">Credit policy</span><span class="chip b">Portfolio ops</span>
+        </div>
+        <div class="links"><a href="https://github.com/jasminegrewal05">GitHub ↗</a><a href="#contact">Live demo ↗</a></div>
+      </article>
+
+      <article class="card rise">
+        <div class="pin"></div>
+        <p class="when">Feb 2026 – present · Research intern, TIET</p>
+        <h3>Type 2 Diabetes Screening Pipeline</h3>
+        <p>
+          <span class="t">A clinical ML pipeline built on 16 biomarkers, tuned for the errors that matter.</span>
+          <span class="b">A screening tool framed as a patient-safety problem rather than an accuracy contest.</span>
+        </p>
+        <ul>
+          <li class="t">Built and compared six models — Random Forest, SVM, Logistic Regression and others — reaching 0.84 ROC-AUC.</li>
+          <li class="t">Recall-focused threshold optimisation cut missed cases by 66%, treating false negatives as the real cost.</li>
+          <li class="t">Findings presented at AITA 2026, an international AI conference.</li>
+          <li class="b">Reframed misclassification as clinical risk: a missed case costs a patient, a false alarm costs a test.</li>
+          <li class="b">Threshold tuning reduced missed cases by 66% — the number a hospital would actually care about.</li>
+          <li class="b">Presented the work at AITA 2026, an international AI conference.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip t">Scikit-learn</span><span class="chip t">Random Forest</span><span class="chip t">SVM</span><span class="chip t">Recall tuning</span>
+          <span class="chip b">Patient safety</span><span class="chip b">Risk framing</span><span class="chip b">Conference talk</span>
+        </div>
+      </article>
+
+      <article class="card rise">
+        <div class="pin"></div>
+        <p class="when">Jan – Apr 2026</p>
+        <h3>Phenology Prediction</h3>
+        <p>
+          <span class="t">Regression on 250,000+ plant lifecycle records to forecast seasonal timing.</span>
+          <span class="b">Forecasting when plants flower — useful to anyone planning around a season.</span>
+        </p>
+        <ul>
+          <li class="t">R² of 0.984 and mean absolute error of 4.79 days after feature engineering.</li>
+          <li class="t">Automated cleaning and feature extraction across a large, messy ecological dataset.</li>
+          <li class="b">Predicts seasonal timing within roughly five days — accurate enough to plan against.</li>
+          <li class="b">Most of the work was cleaning 250,000+ inconsistent records before any modelling happened.</li>
+        </ul>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Scikit-learn</span></div>
+      </article>
+
+      <article class="card rise">
+        <div class="pin"></div>
+        <p class="when">May 2026 · Co-founded concept</p>
+        <h3>Seed-Sphere — Urban Greening Venture</h3>
+        <p>
+          <span class="t">A business model for IoT-enabled seed vending machines in Tier 1 and 2 cities.</span>
+          <span class="b">An ESG-focused venture concept, costed end to end.</span>
+        </p>
+        <ul>
+          <li class="t">Designed the machine's data and connectivity story alongside the commercial model.</li>
+          <li class="t">Projected ₹3.22–3.78 Cr annual revenue against ₹1.2 Cr fixed costs.</li>
+          <li class="b">Six revenue streams mapped against a ₹1.2 Cr fixed cost base, projecting ₹3.22–3.78 Cr a year.</li>
+          <li class="b">Partnership map across municipal bodies, metro operators and NGOs to make distribution realistic.</li>
+        </ul>
+        <div class="chips"><span class="chip">Financial modelling</span><span class="chip">Unit economics</span><span class="chip">ESG / CSR</span></div>
+      </article>
+
+      <article class="card rise" style="grid-column:1/-1">
+        <div class="pin"></div>
+        <p class="when">Mar – May 2026 · Team lead</p>
+        <h3>Street Market Automated Ordering System</h3>
+        <p>
+          <span class="t">A full design thinking cycle, from field research to a validated prototype.</span>
+          <span class="b">Field research first, solution second — the order most projects get backwards.</span>
+        </p>
+        <ul>
+          <li class="t">Interviewed 30+ vendors, customers and shop owners across three market sites to find the real bottleneck.</li>
+          <li class="t">Ran four rounds of low-fidelity storyboard prototyping, folding feedback in each time.</li>
+          <li class="t">Presented the final business case to a faculty panel.</li>
+          <li class="b">Led stakeholder research with 30+ vendors and customers across three sites to validate the problem before building.</li>
+          <li class="b">Four prototype rounds turned vague complaints into specific, testable product changes.</li>
+          <li class="b">Closed with a business case defended in front of a faculty panel.</li>
+        </ul>
+        <div class="chips"><span class="chip">Design thinking</span><span class="chip">User research</span><span class="chip">Prototyping</span><span class="chip">Stakeholder interviews</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="track">
+  <div class="wrap">
+    <div class="head rise">
+      <div>
+        <p class="kicker">Everything else</p>
+        <h2>Track record.</h2>
+      </div>
+      <p class="headnote">Printed from the machine in the corner.</p>
+    </div>
+    <div class="receiptwrap rise">
+      <div class="receipt">
+        <h3>JASMINE KAUR</h3>
+        <div class="sub">Thapar Institute · CSBS · 2024–2028</div>
+        <div class="rule"></div>
+
+        <div class="row"><b>Undergraduate Research Intern</b><span class="yr">Feb 2026 –</span></div>
+        <p class="rdesc">Thapar Institute — clinical ML for Type 2 Diabetes screening. Six models, 16 biomarkers, findings presented at AITA 2026.</p>
+
+        <div class="row"><b>McKinsey Forward Learning Program</b><span class="yr">May – Jun 2026</span></div>
+        <p class="rdesc">Selective leadership programme: structured problem-solving, strategic thinking, professional communication.</p>
+
+        <div class="row"><b>Design Coordinator — MLSC, TIET</b><span class="yr">Jun 2025 – May 2026</span></div>
+        <p class="rdesc">Screened 30+ candidates, owned end-to-end visual design and shipped marketing assets for developer events reaching 100+ members.</p>
+
+        <div class="row"><b>Marketing Core — Saturnalia 2025</b><span class="yr">Sep – Nov 2025</span></div>
+        <p class="rdesc">Sponsorship outreach by cold call, cold email and in-person brand visits for the university's annual fest.</p>
+
+        <div class="row"><b>Volunteer Educator — Pratigya Abhiyan</b><span class="yr">Oct 2024 – Sep 2025</span></div>
+        <p class="rdesc">Weekly Maths, English and Science curriculum for 20+ underprivileged students over 11 months; mentored 25+ at the flagship event.</p>
+
+        <div class="row"><b>Community Workshop — Sankalp</b><span class="yr">Apr 2025</span></div>
+        <p class="rdesc">Self-initiated school workshop for 40 students on self-defence, first aid and applied science.</p>
+
+        <div class="rule"></div>
+        <div class="total"><span>CGPA</span><span>8.71 / 10</span></div>
+        <div class="total"><span>BRANCH RANK</span><span>15</span></div>
+        <div class="total"><span>ALSO</span><span>DISTRICT ATHLETE</span></div>
+        <div class="rule"></div>
+        <div class="sub" style="margin:0">Thank you for scrolling · come again</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="head rise">
+      <div>
+        <p class="kicker">The toolkit</p>
+        <h2>What I work with.</h2>
+      </div>
+      <p class="headnote">Switch the lens up top and this list changes too.</p>
+    </div>
+    <div class="stickers rise">
+      <span class="sticker t">Python</span><span class="sticker t">SQL</span><span class="sticker t">C++</span><span class="sticker t">C</span><span class="sticker t">R</span>
+      <span class="sticker t">Scikit-learn</span><span class="sticker t">XGBoost</span><span class="sticker t">Random Forest</span><span class="sticker t">SVM</span><span class="sticker t">Logistic Regression</span>
+      <span class="sticker t">Feature engineering</span><span class="sticker t">EDA</span><span class="sticker t">SHAP</span><span class="sticker t">Pandas</span><span class="sticker t">NumPy</span>
+      <span class="sticker t">Matplotlib</span><span class="sticker t">Seaborn</span><span class="sticker t">Streamlit</span><span class="sticker t">Git &amp; GitHub</span><span class="sticker t">Jupyter</span>
+
+      <span class="sticker b">Business analysis</span><span class="sticker b">Risk management</span><span class="sticker b">Risk segmentation</span><span class="sticker b">Statistical analysis</span><span class="sticker b">Data visualisation</span>
+      <span class="sticker b">Financial modelling</span><span class="sticker b">Process improvement</span><span class="sticker b">Project management</span><span class="sticker b">Stakeholder communication</span><span class="sticker b">Strategic planning</span>
+      <span class="sticker b">Design thinking</span><span class="sticker b">User research</span><span class="sticker b">Presentation delivery</span><span class="sticker b">Excel</span><span class="sticker b">SQL</span>
+      <span class="sticker b">Python</span><span class="sticker b">Canva</span><span class="sticker b">Photoshop</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="kicker">Say hello</p>
+    <h2>Let's build<br>something.</h2>
+    <p style="max-width:38ch;font-size:19px;margin-top:18px">Internships, research collaborations, or someone to argue with about model thresholds — my inbox is open.</p>
+    <div class="mails">
+      <a href="mailto:jasminekaur3k@gmail.com">jasminekaur3k@gmail.com</a>
+      <a href="https://linkedin.com/in/jasmine-kaur-grewal">LinkedIn ↗</a>
+      <a href="https://github.com/jasminegrewal05">GitHub ↗</a>
+    </div>
+    <div class="foot">
+      <span>Jasmine Kaur · Patiala, India</span>
+      <span>Built from scratch · 2026</span>
+    </div>
+  </div>
+</section>
+
+<script>
+const body = document.body;
+const bt = document.getElementById('btech');
+const bb = document.getElementById('bbiz');
+
+function setLens(mode){
+  body.dataset.lens = mode;
+  bt.setAttribute('aria-pressed', mode === 'tech');
+  bb.setAttribute('aria-pressed', mode === 'biz');
+}
+bt.addEventListener('click', () => setLens('tech'));
+bb.addEventListener('click', () => setLens('biz'));
+
+const bar = document.getElementById('bar');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.width = (window.scrollY / h) * 100 + '%';
+});
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('.rise').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
