@@ -168,6 +168,18 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,58px);let
 .sticker:nth-child(7n){background:var(--yellow)}
 .sticker:hover{transform:rotate(-3deg) scale(1.05)}
 
+/* ---------- wins ---------- */
+.wins{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.win{background:var(--paper);border:2.5px solid var(--ink);border-radius:16px;padding:20px 20px 18px;box-shadow:5px 6px 0 var(--ink)}
+.win:nth-child(3n+1){transform:rotate(-.6deg)}
+.win:nth-child(3n){transform:rotate(.6deg)}
+.badge{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:var(--pink-soft);border:2px solid var(--ink);border-radius:100px;padding:3px 10px;margin-bottom:10px}
+.win:nth-child(5n) .badge{background:var(--lilac)}
+.win:nth-child(3n) .badge{background:var(--yellow)}
+.win b{display:block;font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.02em;line-height:1.15;margin-bottom:6px}
+.win p{margin:0;font-size:14px;color:var(--ink-soft)}
+@media (max-width:900px){.wins{grid-template-columns:1fr}}
+
 /* ---------- contact ---------- */
 .contact{background:var(--pink);border-top:3px solid var(--ink);color:#fff;padding:86px 0 40px;margin-top:40px}
 .contact h2{color:#fff;font-size:clamp(38px,8vw,86px)}
@@ -207,6 +219,7 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,58px);let
     <div class="navlinks">
       <a href="#about">About</a>
       <a href="#work">Work</a>
+      <a href="#wins">Recognition</a>
       <a href="#track">Track record</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
@@ -438,7 +451,7 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,58px);let
           <span class="chip t">XGBoost</span><span class="chip t">SHAP</span><span class="chip t">Reject inference</span><span class="chip t">Streamlit</span>
           <span class="chip b">Risk segmentation</span><span class="chip b">Credit policy</span><span class="chip b">Portfolio ops</span>
         </div>
-        <div class="links"><a href="https://github.com/jasminegrewal05">GitHub ↗</a><a href="https://creditshield-ai-credit-risk-limit-optimization-c3jlu47twpokmub.streamlit.app/">Live demo ↗</a></div>
+        <div class="links"><a href="https://github.com/jasminegrewal05">GitHub ↗</a><a href="#contact">Live demo ↗</a></div>
       </article>
 
       <article class="card rise">
@@ -461,6 +474,23 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,58px);let
           <span class="chip t">Scikit-learn</span><span class="chip t">Random Forest</span><span class="chip t">SVM</span><span class="chip t">Recall tuning</span>
           <span class="chip b">Patient safety</span><span class="chip b">Risk framing</span><span class="chip b">Conference talk</span>
         </div>
+      </article>
+
+      <article class="card rise">
+        <div class="pin"></div>
+        <p class="when">Jun – Jul 2025 · India Space Academy</p>
+        <h3>Galaxy Cluster Mass &amp; Dark Matter</h3>
+        <p>
+          <span class="t">A data-driven astrophysics project on real telescope survey data.</span>
+          <span class="b">Astrophysics, but the job was the same: pull signal out of a huge public dataset.</span>
+        </p>
+        <ul>
+          <li class="t">Used SDSS spectroscopic data to identify galaxy cluster members and compute velocity dispersion.</li>
+          <li class="t">Estimated the cluster's total dynamical mass and benchmarked it against luminous mass to quantify the dark-matter contribution.</li>
+          <li class="b">Turned raw Sloan Digital Sky Survey data into a mass estimate — a full measurement pipeline end to end.</li>
+          <li class="b">Compared dynamical vs luminous mass to reason about what the data implies about dark matter.</li>
+        </ul>
+        <div class="chips"><span class="chip">SDSS data</span><span class="chip">Python</span><span class="chip">Statistical analysis</span><span class="chip">Astrophysics</span></div>
       </article>
 
       <article class="card rise">
@@ -519,6 +549,50 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,58px);let
   </div>
 </section>
 
+<section class="section" id="wins" style="padding-top:0">
+  <div class="wrap">
+    <div class="head rise">
+      <div>
+        <p class="kicker">On the wall</p>
+        <h2>Recognition.</h2>
+      </div>
+      <p class="headnote">Programs and competitions worth pinning up.</p>
+    </div>
+    <div class="wins rise">
+      <div class="win">
+        <span class="badge">Program</span>
+        <b>McKinsey Forward Learner</b>
+        <p>McKinsey &amp; Company · 2026 — selective leadership program in structured problem-solving and strategic communication.</p>
+      </div>
+      <div class="win">
+        <span class="badge">Top tier</span>
+        <b>Semi-Finalist · Flipkart GRiD 6.0</b>
+        <p>National engineering &amp; business case challenge, 2026.</p>
+      </div>
+      <div class="win">
+        <span class="badge">Top tier</span>
+        <b>Finalist · HackVega 2026</b>
+        <p>Reached the final round of the hackathon.</p>
+      </div>
+      <div class="win">
+        <span class="badge">Hackathon</span>
+        <b>Women Who Master</b>
+        <p>Participant · Logitech × Aspire For Her, 2026.</p>
+      </div>
+      <div class="win">
+        <span class="badge">Academic</span>
+        <b>Branch Rank 15 · School Topper</b>
+        <p>CGPA 8.71 at TIET; multiple inter-school art competition wins as lead artist.</p>
+      </div>
+      <div class="win">
+        <span class="badge">Sport</span>
+        <b>District-Level Athlete</b>
+        <p>Field athletics and basketball.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="track">
   <div class="wrap">
     <div class="head rise">
@@ -536,6 +610,9 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,58px);let
 
         <div class="row"><b>Undergraduate Research Intern</b><span class="yr">Feb 2026 –</span></div>
         <p class="rdesc">Thapar Institute — clinical ML for Type 2 Diabetes screening. Six models, 16 biomarkers, findings presented at AITA 2026.</p>
+
+        <div class="row"><b>Astronomy &amp; Astrophysics Intern</b><span class="yr">Jun – Jul 2025</span></div>
+        <p class="rdesc">India Space Academy — estimated a galaxy cluster's dynamical mass from SDSS data and benchmarked it against luminous mass to probe dark matter.</p>
 
         <div class="row"><b>McKinsey Forward Learning Program</b><span class="yr">May – Jun 2026</span></div>
         <p class="rdesc">Selective leadership programme: structured problem-solving, strategic thinking, professional communication.</p>
@@ -577,6 +654,7 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,58px);let
       <span class="sticker t">Scikit-learn</span><span class="sticker t">XGBoost</span><span class="sticker t">Random Forest</span><span class="sticker t">SVM</span><span class="sticker t">Logistic Regression</span>
       <span class="sticker t">Feature engineering</span><span class="sticker t">EDA</span><span class="sticker t">SHAP</span><span class="sticker t">Pandas</span><span class="sticker t">NumPy</span>
       <span class="sticker t">Matplotlib</span><span class="sticker t">Seaborn</span><span class="sticker t">Streamlit</span><span class="sticker t">Git &amp; GitHub</span><span class="sticker t">Jupyter</span>
+      <span class="sticker t">C</span><span class="sticker t">SDSS / astro data</span><span class="sticker t">Data structures</span><span class="sticker t">Operating systems</span>
 
       <span class="sticker b">Business analysis</span><span class="sticker b">Risk management</span><span class="sticker b">Risk segmentation</span><span class="sticker b">Statistical analysis</span><span class="sticker b">Data visualisation</span>
       <span class="sticker b">Financial modelling</span><span class="sticker b">Process improvement</span><span class="sticker b">Project management</span><span class="sticker b">Stakeholder communication</span><span class="sticker b">Strategic planning</span>
