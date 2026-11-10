@@ -1,8 +1,5 @@
 # Jasmine Kaur | Portfolio
 
-### 👉 [Open the portfolio](https://jasminegrewal05.github.io/portfolio/)
-
-[![Open portfolio](https://img.shields.io/badge/Open-Portfolio-2F7F7B?style=for-the-badge)](https://jasminegrewal05.github.io/portfolio/)
 
 **Live link:** https://jasminegrewal05.github.io/portfolio/
 
